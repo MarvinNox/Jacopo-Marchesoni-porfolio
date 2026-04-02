@@ -170,15 +170,21 @@ a {
   border: 1px solid #fff;
   color: white;
   background: none;
+  cursor: pointer;
   padding: 12px 48px;
   min-width: 195px;
   min-height: 48px;
   transition:
     color ease-in-out 300ms,
-    background-color ease-in-out 300ms;
+    background-color ease-in-out 300ms,
+    translate ease-in-out 300ms;
   &:hover {
     background: white;
     color: black;
+    translate: 0 -4px;
+  }
+  &:active {
+    translate: 0 -2px;
   }
 }
 
@@ -550,6 +556,10 @@ a {
   &:hover {
     background-color: light-dark(var(--bg-dark), var(--bg-light));
     color: light-dark(var(--bg-light), var(--bg-dark));
+    translate: 0 -4px;
+  }
+  &:active {
+    translate: 0 -2px;
   }
 }
 
@@ -581,7 +591,7 @@ a {
 .footer-up-link:hover {
   .footer-up_icon {
     opacity: 0.9;
-    scale: 102%;
+    scale: 104%;
   }
 }
 
