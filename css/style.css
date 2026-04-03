@@ -1,6 +1,6 @@
 @font-face {
   font-family: "TTCommons";
-  src: url("/font/TTCommons-Light.woff") format("woff");
+  src: url("../font/TTCommons-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "TTCommons";
-  src: url("/font/TTCommons-Regular.woff") format("woff");
+  src: url("../font/TTCommons-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "TTCommons";
-  src: url("/font/TTCommons-Italic.woff") format("woff");
+  src: url("../font/TTCommons-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -114,7 +114,7 @@ a {
 
 .container {
   max-width: 320px;
-  padding: 0 16px;
+  padding-inline: 24px;
   margin: 0 auto;
   @media screen and (width > 768px) {
     max-width: 768px;
@@ -147,7 +147,10 @@ a {
   position: relative;
   z-index: 2;
   height: 100%;
-  padding: 32px 56px;
+  padding: 18px 24px;
+  @media screen and (width > 768px) {
+    padding: 32px 56px;
+  }
 }
 
 .header {
@@ -162,9 +165,14 @@ a {
 }
 .header_logo {
   fill: white;
-  height: 97px;
-  width: 77px;
+  height: 67px;
+  width: 47px;
+  @media screen and (width > 768px) {
+    height: 97px;
+    width: 77px;
+  }
 }
+
 .header_btn {
   display: block;
   border: 1px solid #fff;
