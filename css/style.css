@@ -135,7 +135,7 @@ a {
 }
 
 .container {
-  max-width: 320px;
+  max-width: 375px;
   padding-inline: 24px;
   margin: 0 auto;
   @media screen and (width > 768px) {
@@ -340,6 +340,7 @@ a {
 .about-wrapper {
   padding-block: 80px;
   padding-inline: 24px;
+  overflow: hidden;
   & .flex {
     display: flex;
     justify-content: flex-end;
@@ -563,6 +564,7 @@ a {
   padding-block: 40px;
   padding-inline: 24px;
   gap: 24px;
+  overflow: hidden;
   @media screen and (width > 768px) {
     padding-block: 75px;
     padding-inline: 56px;
@@ -588,9 +590,6 @@ a {
   transition: scale ease-in-out 300ms;
   order: 1;
   padding-bottom: 32px;
-  &:hover {
-    scale: 1.02;
-  }
   @media screen and (width > 1158px) {
     order: 2;
     padding-bottom: 0;
