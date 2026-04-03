@@ -133,3 +133,4 @@ document
   });
 
 loadGallery();
+AOS.init();
