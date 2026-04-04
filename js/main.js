@@ -2,13 +2,14 @@ const CLOUD_NAME = "marvin-nox";
 const TAG = "tenjou-gallery";
 const LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json`;
 
-const toggle = document.getElementById("theme-toggle");
 const html = document.documentElement;
+const toggle = document.getElementById("theme-toggle");
+const video = document.querySelector(".hero__video");
 
 let galleryItems = [];
 let currentIndex = 0;
 
-const video = document.querySelector(".hero__video");
+// * Attempt to play the video, hide it if it fails (e.g., unsupported format)
 
 if (video) {
   video.addEventListener("error", () => {
@@ -20,6 +21,7 @@ if (video) {
   });
 }
 
+//? Load saved theme from localStorage
 const saved = localStorage.getItem("theme");
 if (saved === "dark") {
   html.classList.add("dark");
@@ -35,6 +37,8 @@ toggle.addEventListener("change", () => {
     localStorage.setItem("theme", "light");
   }
 });
+
+//! Gallery functions
 
 function shuffle(array) {
   const copy = [...array];
