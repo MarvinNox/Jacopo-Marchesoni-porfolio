@@ -8,6 +8,18 @@ const html = document.documentElement;
 let galleryItems = [];
 let currentIndex = 0;
 
+const video = document.querySelector(".hero__video");
+
+if (video) {
+  video.addEventListener("error", () => {
+    video.classList.add("is-hidden");
+  });
+
+  video.play().catch(() => {
+    video.classList.add("is-hidden");
+  });
+}
+
 const saved = localStorage.getItem("theme");
 if (saved === "dark") {
   html.classList.add("dark");
