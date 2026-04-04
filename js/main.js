@@ -9,6 +9,8 @@ const video = document.querySelector(".hero__video");
 let galleryItems = [];
 let currentIndex = 0;
 
+gsap.registerPlugin(ScrollTrigger);
+
 // * Attempt to play the video, hide it if it fails (e.g., unsupported format)
 
 if (video) {
@@ -167,5 +169,72 @@ document
     e.stopPropagation();
   });
 
+function initScrollAnimations() {
+  gsap.fromTo(
+    ".about-text-wrap",
+    {
+      opacity: 0,
+      x: 100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".about-text-wrap",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+        once: false,
+      },
+    },
+  );
+
+  gsap.fromTo(
+    ".founder-card",
+    {
+      opacity: 0,
+      x: -100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".founder-card",
+        start: "top 95%",
+        toggleActions: "play none none reverse",
+        once: false,
+      },
+    },
+  );
+
+  gsap.fromTo(
+    ".founder-img",
+    {
+      opacity: 0,
+      x: 100,
+    },
+    {
+      opacity: 1,
+      x: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".founder-img",
+        start: "top 95%",
+        toggleActions: "play none none reverse",
+        once: false,
+      },
+    },
+  );
+}
+
 loadGallery();
-AOS.init();
+
+initScrollAnimations();
+
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});
