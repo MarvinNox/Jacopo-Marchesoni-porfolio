@@ -48,6 +48,20 @@
   --links: #c3c3c3;
   --icon: white;
 
+  /* Toggle-specific */
+  --toggle-track-light: oklch(80% 0.08 250);
+  --toggle-track-dark: oklch(50% 0.12 250);
+  --toggle-track: light-dark(
+    var(--toggle-track-light),
+    var(--toggle-track-dark)
+  );
+  --toggle-thumb-light: oklch(99% 0 0);
+  --toggle-thumb-dark: oklch(30% 0.05 250);
+  --toggle-thumb: light-dark(
+    var(--toggle-thumb-light),
+    var(--toggle-thumb-dark)
+  );
+
   /*! Service sizes */
   --continer-width: 90rem; /* 1440px */
   --container-padding: clamp(1rem, 5vw, 3.5rem); /* 16px to 56px */
@@ -59,10 +73,14 @@
   --title-size: clamp(1.5rem, 3vw + 0.8rem, 2.5rem); /* 24px to  40px*/
   --font-size: clamp(1.125rem, 1rem + 0.8vw, 1.5rem); /* 18px to 24px */
   --grid-gap: clamp(0.75rem, 0.2rem + 2.5vw, 2.5rem); /* 12px to 40px */
+
+  /* base color scheme */
+  color-scheme: light;
 }
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
   font-family: var(--first-family);
   font-weight: 400;
   tab-size: 4;
@@ -70,16 +88,18 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
-
   font-family: var(--first-family);
   color: var(--bg-light);
   background-color: light-dark(var(--bg-light), var(--bg-dark));
-
-  &.dark {
-    color-scheme: dark;
-  }
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 img {
@@ -169,6 +189,9 @@ a {
 }
 
 .hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   z-index: 2;
   height: 100%;
@@ -218,12 +241,28 @@ a {
   &:active {
     translate: 0 -2px;
   }
-
   @media screen and (width > 768px) {
     padding: 0.75rem 3rem;
     min-width: 12rem;
     min-height: 3rem;
   }
+  &.desk {
+    @media screen and (width < 767px) {
+      display: none;
+    }
+  }
+  &.mobile {
+    margin: 0 auto 2rem;
+    @media screen and (width > 768px) {
+      display: none;
+    }
+  }
+}
+
+.flex-wrap {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
 .hero-nav {
@@ -688,4 +727,88 @@ a {
   @media screen and (width < 768px) {
     padding-top: 1.5rem;
   }
+}
+
+/* ── Toggle ── */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+#theme-toggle {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* Track */
+.toggle-label::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--toggle-track);
+  border-radius: 999px;
+  transition: background 0.4s ease;
+}
+
+/* Thumb */
+.toggle-label::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--toggle-thumb);
+  box-shadow: 0 1px 4px oklch(0% 0 0 / 0.25);
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.4s ease;
+}
+
+/* Checked state: slide thumb right */
+#theme-toggle:checked + .toggle-label::after {
+  transform: translateX(26px);
+}
+
+/* Icons inside thumb using text shadow tricks — sun ☀ / moon ☾ */
+.toggle-label .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+.icon-sun {
+  left: 6px;
+}
+.icon-moon {
+  right: 6px;
+}
+
+/* Hide moon in light mode, hide sun in dark mode */
+.icon-moon {
+  opacity: 0.35;
+}
+#theme-toggle:checked ~ .toggle-wrap .icon-sun {
+  opacity: 0.35;
 }

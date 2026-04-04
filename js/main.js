@@ -2,8 +2,27 @@ const CLOUD_NAME = "marvin-nox";
 const TAG = "tenjou-gallery";
 const LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json`;
 
+const toggle = document.getElementById("theme-toggle");
+const html = document.documentElement;
+
 let galleryItems = [];
 let currentIndex = 0;
+
+const saved = localStorage.getItem("theme");
+if (saved === "dark") {
+  html.classList.add("dark");
+  toggle.checked = true;
+}
+
+toggle.addEventListener("change", () => {
+  if (toggle.checked) {
+    html.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    html.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+});
 
 function shuffle(array) {
   const copy = [...array];
