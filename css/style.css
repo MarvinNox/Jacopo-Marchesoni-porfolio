@@ -43,6 +43,7 @@
   /*! Colors vars */
   --bg-light: #f8f8f8;
   --bg-dark: #00080c;
+  --bg-dark-blue: #021020;
   --accent-grey: #3f3f3f;
   --accent-sub: #00577f;
   --links: #c3c3c3;
@@ -71,7 +72,7 @@
     4.6875rem
   ); /* 40px to 75px */
   --title-size: clamp(1.5rem, 3vw + 0.8rem, 2.5rem); /* 24px to  40px*/
-  --font-size: clamp(1.125rem, 1rem + 0.8vw, 1.5rem); /* 18px to 24px */
+  --font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem); /* 18px to 24px */
   --grid-gap: clamp(0.75rem, 0.2rem + 2.5vw, 2.5rem); /* 12px to 40px */
 
   /* base color scheme */
@@ -96,7 +97,7 @@ body {
   margin: 0;
   font-family: var(--first-family);
   color: var(--bg-light);
-  background-color: light-dark(var(--bg-light), var(--bg-dark));
+  background-color: light-dark(var(--bg-light), var(--bg-dark-blue));
   transition:
     background-color 0.4s ease,
     color 0.4s ease;
@@ -252,7 +253,7 @@ a {
     }
   }
   &.mobile {
-    margin: 0 auto 2rem;
+    margin: 0 auto 3rem;
     @media screen and (width > 768px) {
       display: none;
     }
@@ -618,6 +619,7 @@ a {
 
 .founder_btn {
   margin-top: auto;
+  text-align: center;
   background-color: transparent;
   color: light-dark(var(--bg-dark), var(--bg-light));
   border: 1px solid light-dark(var(--bg-dark), var(--bg-light));
@@ -645,14 +647,15 @@ a {
 .footer-title-wrap {
   display: flex;
   justify-content: space-between;
+  padding-bottom: var(--container-block);
 }
 
 .footer-title {
+  align-self: center;
   font-family: var(--second-family);
   font-weight: 300;
   font-size: var(--title-size);
   color: var(--accent-sub);
-  padding-bottom: 100px;
 }
 
 .footer-up_icon {
