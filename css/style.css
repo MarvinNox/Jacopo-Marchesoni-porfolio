@@ -201,7 +201,7 @@ a {
   padding: 18px 24px;
   padding-block: clamp(1.125rem, 0.85rem + 1.2vw, 2rem);
   padding-inline: var(--container-padding);
-  background-image: url("./assets/fallback-hero.webp");
+  background-image: url("../assets/fallback-hero.webp");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
