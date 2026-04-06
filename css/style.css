@@ -287,7 +287,7 @@ a {
   justify-content: flex-end;
   align-items: center;
   gap: 0.75rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   &:hover {
     .hero-item_link {
       font-size: 3rem;
@@ -346,6 +346,7 @@ a {
 }
 
 .hero-words__track {
+  font-weight: 300;
   display: flex;
   flex-direction: column;
   animation: words-slide 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
