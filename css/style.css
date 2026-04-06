@@ -71,7 +71,7 @@
     1.8rem + 3.5vw,
     4.6875rem
   ); /* 40px to 75px */
-  --title-size: clamp(1.5rem, 3vw + 0.8rem, 2.5rem); /* 24px to  40px*/
+  --title-size: clamp(1.5rem, 3vw + 0.7rem, 2rem); /* 24px to  40px*/
   --font-size: clamp(1.125rem, 1rem + 0.5vw, 1.5rem); /* 18px to 24px */
   --grid-gap: clamp(0.75rem, 0.2rem + 2.5vw, 2.5rem); /* 12px to 40px */
 
@@ -601,8 +601,8 @@ a {
 .founder__title-wrap {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 0.8rem + 1vw, 1.5rem);
-  margin-bottom: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
+  gap: clamp(1rem, 0.8rem + 1vw, 1.125rem);
+  margin-bottom: clamp(1rem, 1rem + 0.8vw, 2rem);
 }
 
 .founder-icon {
@@ -656,19 +656,27 @@ a {
 .footer-title-wrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: var(--container-block);
 }
 
 .footer-title {
+  display: flex;
+  flex-direction: column;
   align-self: center;
   font-family: var(--second-family);
   font-weight: 300;
-  font-size: var(--title-size);
-  color: var(--accent-sub);
+  font-size: 3.125rem;
+  line-height: 1;
+  color: light-dark(var(--accent-sub), var(--bg-light));
+  & span {
+    font-size: 1rem;
+    letter-spacing: 0.0125em;
+  }
 }
 
 .footer-up_icon {
-  stroke: var(--accent-sub);
+  stroke: light-dark(var(--accent-sub), var(--bg-light));
   transition:
     opacity 300ms ease-in-out,
     scale 300ms ease-in-out;
