@@ -734,6 +734,7 @@ a {
 }
 
 #bpagency {
+  color: light-dark(var(--bg-dark), var(--bg-light));
   @media screen and (width < 768px) {
     padding-top: 1.5rem;
   }
