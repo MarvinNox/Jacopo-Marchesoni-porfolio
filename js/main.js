@@ -9,37 +9,48 @@ const video = document.querySelector(".hero__video");
 let galleryItems = [];
 let currentIndex = 0;
 
-gsap.registerPlugin(ScrollTrigger);
-
 // * Attempt to play the video, hide it if it fails (e.g., unsupported format)
+let theme = "light";
+try {
+  const saved = localStorage.getItem("theme");
+  if (saved === "dark") theme = "dark";
+} catch (e) {}
+
+if (theme === "dark") {
+  html.classList.add("dark");
+  if (toggle) toggle.checked = true;
+}
+
+if (toggle) {
+  toggle.addEventListener("change", () => {
+    theme = toggle.checked ? "dark" : "light";
+    html.classList.toggle("dark", theme === "dark");
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (e) {}
+  });
+}
 
 if (video) {
+  video.muted = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+
+  const tryPlay = () => {
+    const p = video.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => video.classList.add("is-hidden"));
+    }
+  };
+
   video.addEventListener("error", () => {
     video.classList.add("is-hidden");
   });
 
-  video.play().catch(() => {
-    video.classList.add("is-hidden");
-  });
+  video.addEventListener("canplay", tryPlay, { once: true });
+  video.addEventListener("loadedmetadata", tryPlay, { once: true });
 }
-
-//? Load saved theme from localStorage
-const saved = localStorage.getItem("theme");
-if (saved === "dark") {
-  html.classList.add("dark");
-  toggle.checked = true;
-}
-
-toggle.addEventListener("change", () => {
-  if (toggle.checked) {
-    html.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else {
-    html.classList.remove("dark");
-    localStorage.setItem("theme", "light");
-  }
-});
-
 //! Gallery functions
 
 function shuffle(array) {
@@ -233,6 +244,7 @@ function initScrollAnimations() {
 
 loadGallery();
 
+gsap.registerPlugin(ScrollTrigger);
 initScrollAnimations();
 
 window.addEventListener("load", () => {

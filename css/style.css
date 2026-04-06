@@ -49,7 +49,7 @@
   --links: #c3c3c3;
   --icon: white;
 
-  /* Toggle-specific */
+  /*! Toggle-specific */
   --toggle-track-light: oklch(80% 0.08 250);
   --toggle-track-dark: oklch(50% 0.12 250);
   --toggle-track: light-dark(
@@ -188,20 +188,21 @@ a {
   height: 100%;
   object-fit: cover;
 }
+
 .hero__video.is-hidden {
   display: none;
 }
+
 .hero__content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   height: 100%;
   padding: 18px 24px;
   padding-block: clamp(1.125rem, 0.85rem + 1.2vw, 2rem);
   padding-inline: var(--container-padding);
-  background-image: url("../assets/fallback-hero.webp");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -217,6 +218,7 @@ a {
     height: 97px;
   }
 }
+
 .header_logo {
   fill: white;
   height: 67px;
