@@ -261,7 +261,7 @@ a {
     }
   }
   &.mobile {
-    margin: 0 auto 3rem;
+    margin: 0 auto 5rem;
     @media screen and (width > 768px) {
       display: none;
     }
@@ -279,9 +279,9 @@ a {
   top: 50%;
   right: clamp(1.5rem, 0.5rem + 4vw, 3.5rem);
   transform: translateY(-50%);
-  @media screen and (width < 767px) {
+  /* @media screen and (width < 767px) {
     top: 60%;
-  }
+  } */
 }
 
 .hero-nav_item {
