@@ -1,5 +1,5 @@
-const CLOUD_NAME = "marvin-nox";
-const TAG = "tenjou-gallery";
+const CLOUD_NAME = "tenjoustudio";
+const TAG = "tenjou-studio";
 const LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json`;
 
 const html = document.documentElement;
