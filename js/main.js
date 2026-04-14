@@ -9,7 +9,7 @@ const video = document.querySelector(".hero__video");
 let galleryItems = [];
 let currentIndex = 0;
 
-// * Attempt to play the video, hide it if it fails (e.g., unsupported format)
+// * Theme toggle with localStorage persistence
 let theme = "light";
 try {
   const saved = localStorage.getItem("theme");
@@ -31,6 +31,7 @@ if (toggle) {
   });
 }
 
+// * Attempt to play the video, hide it if it fails (e.g., unsupported format)
 if (video) {
   video.muted = true;
   video.setAttribute("muted", "");
@@ -51,7 +52,8 @@ if (video) {
   video.addEventListener("canplay", tryPlay, { once: true });
   video.addEventListener("loadedmetadata", tryPlay, { once: true });
 }
-//! Gallery functions
+
+// * Shuffle an array using the Fisher-Yates algorithm
 
 function shuffle(array) {
   const copy = [...array];
@@ -82,6 +84,7 @@ function mapCloudinaryItem(item) {
   };
 }
 
+// * Render gallery items into the DOM
 function renderGallery(items) {
   items.forEach((item, index) => {
     const img = document.getElementById(`gallery-img-${index}`);
@@ -95,6 +98,7 @@ function renderGallery(items) {
   });
 }
 
+// * Load gallery items from Cloudinary, shuffle, and render
 async function loadGallery() {
   try {
     const res = await fetch(LIST_URL);
@@ -111,6 +115,7 @@ async function loadGallery() {
   }
 }
 
+// * Open lightbox with the full image and caption
 function openLightbox(index) {
   const item = galleryItems[index];
   if (!item) return;
@@ -180,6 +185,7 @@ document
     e.stopPropagation();
   });
 
+// * Initialize GSAP scroll-triggered animations
 function initScrollAnimations() {
   gsap.fromTo(
     ".about-text-wrap",
@@ -242,11 +248,18 @@ function initScrollAnimations() {
   );
 }
 
-loadGallery();
-
 gsap.registerPlugin(ScrollTrigger);
-initScrollAnimations();
 
-window.addEventListener("load", () => {
+function initialize() {
+  loadGallery();
+  initScrollAnimations();
   ScrollTrigger.refresh();
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initialize);
+} else {
+  initialize();
+}
+
+window.addEventListener("load", () => ScrollTrigger.refresh());
