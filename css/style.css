@@ -43,7 +43,7 @@
   /*! Colors vars */
   --bg-light: #f8f8f8;
   --bg-dark: #00080c;
-  --bg-dark-blue: #040e1a;
+  --bg-dark-blue: #02080f;
   --accent-grey: #3f3f3f;
   --accent-sub: #00577f;
   --links: #c3c3c3;
@@ -348,6 +348,7 @@ a {
 }
 
 .hero-words__track {
+  text-align: center;
   font-weight: 300;
   display: flex;
   flex-direction: column;
