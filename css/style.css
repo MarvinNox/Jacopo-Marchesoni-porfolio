@@ -629,17 +629,6 @@ a {
   font-weight: 400;
 }
 
-.consult-plan {
-  background: url("../assets/consult.webp") no-repeat center / cover;
-  aspect-ratio: 1 / 1;
-}
-
-@media (min-width: 1024px) {
-  .consult-plan {
-    aspect-ratio: 2.5 / 1;
-  }
-}
-
 .founder-img {
   object-fit: contain;
   transition: scale ease-in-out 300ms;
