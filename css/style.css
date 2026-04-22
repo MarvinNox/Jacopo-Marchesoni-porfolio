@@ -103,6 +103,10 @@ body {
     color 0.4s ease;
 }
 
+section {
+  scroll-margin-top: 60px;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -279,9 +283,6 @@ a {
   top: 50%;
   right: clamp(1.5rem, 0.5rem + 4vw, 3.5rem);
   transform: translateY(-50%);
-  /* @media screen and (width < 767px) {
-    top: 60%;
-  } */
 }
 
 .hero-nav_item {
@@ -576,6 +577,9 @@ a {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  &.consult {
+    padding-inline: 0;
+  }
 }
 
 .founder-card {
@@ -587,6 +591,52 @@ a {
     @media screen and (width > 1158px) {
       order: 1;
     }
+  }
+}
+
+.consult-list {
+  counter-reset: counter;
+  padding-left: 0;
+  list-style: none;
+  color: light-dark(var(--accent-grey), var(--bg-light));
+  & li {
+    counter-increment: counter;
+    position: relative;
+    padding: 20px 0 20px 60px;
+    border-top: 1.25px solid light-dark(var(--links), var(--bg-light));
+  }
+  & li::before {
+    content: counter(counter) ".";
+    position: absolute;
+    left: 0;
+
+    color: var(--links);
+    line-height: 1;
+    font-weight: 400;
+    font-size: 1rem;
+
+    content: "0" counter(counter);
+  }
+}
+
+.consult-title {
+  line-height: 1;
+  padding-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.consult-text {
+  font-weight: 400;
+}
+
+.consult-plan {
+  background: url("../assets/consult.webp") no-repeat center / cover;
+  aspect-ratio: 1 / 1;
+}
+
+@media (min-width: 1024px) {
+  .consult-plan {
+    aspect-ratio: 2.5 / 1;
   }
 }
 
