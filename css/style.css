@@ -605,6 +605,9 @@ a {
     padding: 20px 0 20px 60px;
     border-top: 1.25px solid light-dark(var(--links), var(--bg-light));
   }
+  & li:last-child {
+    padding: 20px 0 0 60px;
+  }
   & li::before {
     content: counter(counter) ".";
     position: absolute;
@@ -668,6 +671,7 @@ a {
   color: light-dark(var(--bg-dark), var(--bg-light));
   max-width: 39rem;
   margin-bottom: 2rem;
+  max-width: 550px;
 }
 
 .founder_btn {
