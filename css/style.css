@@ -577,11 +577,11 @@ a {
 }
 
 .prev-btn {
-  left: -70px;
+  left: 25px;
 }
 
 .next-btn {
-  right: -70px;
+  right: 25px;
 }
 
 /* arrow adaptive */
@@ -592,10 +592,10 @@ a {
     font-size: 26px;
   }
   .prev-btn {
-    left: -25px;
+    left: 14px;
   }
   .next-btn {
-    right: -25px;
+    right: 14px;
   }
 }
 

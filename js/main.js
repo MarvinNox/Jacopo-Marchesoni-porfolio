@@ -248,6 +248,59 @@ function initScrollAnimations() {
   );
 }
 
+// * Touch swipe support for lightbox
+let startX = 0;
+let startY = 0;
+let currentX = 0;
+let currentY = 0;
+let isSwiping = false;
+
+function handleTouchStart(e) {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+  isSwiping = true;
+}
+
+function handleTouchMove(e) {
+  if (!isSwiping) return;
+  currentX = e.touches[0].clientX;
+  currentY = e.touches[0].clientY;
+}
+
+function handleTouchEnd() {
+  if (!isSwiping) return;
+
+  const deltaX = currentX - startX;
+  const deltaY = currentY - startY;
+  const absDeltaX = Math.abs(deltaX);
+  const absDeltaY = Math.abs(deltaY);
+
+  // If horizontal swipe is more significant than vertical and exceeds threshold, navigate images
+  if (absDeltaX > absDeltaY && absDeltaX > 50) {
+    if (deltaX > 0) {
+      prevImage({ stopPropagation: () => {} }); // left swipe
+    } else {
+      nextImage({ stopPropagation: () => {} }); // right swipe
+    }
+  }
+
+  isSwiping = false;
+}
+
+// Add touch event listeners to the lightbox content
+const lightboxContent = document.querySelector(".lightbox-content");
+if (lightboxContent) {
+  lightboxContent.addEventListener("touchstart", handleTouchStart, {
+    passive: true,
+  });
+  lightboxContent.addEventListener("touchmove", handleTouchMove, {
+    passive: true,
+  });
+  lightboxContent.addEventListener("touchend", handleTouchEnd, {
+    passive: true,
+  });
+}
+
 gsap.registerPlugin(ScrollTrigger);
 
 function initialize() {
