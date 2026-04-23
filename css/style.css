@@ -576,12 +576,16 @@ a {
   transform: translateY(-50%) scale(1.1);
 }
 
+.prev-btn,
+.next-btn {
+}
+
 .prev-btn {
-  left: 25px;
+  left: -25px;
 }
 
 .next-btn {
-  right: 25px;
+  right: -25px;
 }
 
 /* arrow adaptive */
@@ -592,10 +596,10 @@ a {
     font-size: 26px;
   }
   .prev-btn {
-    left: 14px;
+    left: -14px;
   }
   .next-btn {
-    right: 14px;
+    right: -14px;
   }
 }
 
