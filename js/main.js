@@ -186,69 +186,46 @@ document
   });
 
 // * Initialize GSAP scroll-triggered animations
-function initScrollAnimations() {
-  gsap.fromTo(
-    ".about-text-wrap",
-    {
-      opacity: 0,
-      x: 100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".about-text-wrap",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-        once: false,
+function animateOnScroll(
+  selector,
+  fromVars,
+  start = "top 85%",
+  duration = 1.2,
+) {
+  gsap.utils.toArray(selector).forEach((el) => {
+    gsap.fromTo(
+      el,
+      {
+        opacity: 0,
+        ...fromVars,
       },
-    },
-  );
-
-  gsap.fromTo(
-    ".founder-card",
-    {
-      opacity: 0,
-      x: -100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".founder-card",
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-        once: false,
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start,
+          toggleActions: "play none none reverse",
+        },
       },
-    },
-  );
-
-  gsap.fromTo(
-    ".founder-img",
-    {
-      opacity: 0,
-      x: 100,
-    },
-    {
-      opacity: 1,
-      x: 0,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".founder-img",
-        start: "top 95%",
-        toggleActions: "play none none reverse",
-        once: false,
-      },
-    },
-  );
+    );
+  });
 }
 
-// * Touch swipe support for lightbox
+function initScrollAnimations() {
+  animateOnScroll(".about-text-wrap", { x: 100 }, "top 85%", 1.2);
+  animateOnScroll(".consult-fade-right", { x: 100 }, "top 85%", 1.3);
+  animateOnScroll(".consult-fade-left", { x: -100 }, "top 85%", 1.3);
+  animateOnScroll(".teach-fade-right", { y: 100 }, "top 85%", 1.3);
+  animateOnScroll(".teach-fade-left", { y: -100 }, "top 85%", 1.3);
+  animateOnScroll(".founder-fade-left", { x: -100 }, "top 95%", 1.3);
+  animateOnScroll(".founder-fade-right", { x: 100 }, "top 95%", 1.3);
+}
+
+// ! Touch swipe support for lightbox
 let startX = 0;
 let startY = 0;
 let currentX = 0;
@@ -275,7 +252,7 @@ function handleTouchEnd() {
   const absDeltaX = Math.abs(deltaX);
   const absDeltaY = Math.abs(deltaY);
 
-  // If horizontal swipe is more significant than vertical and exceeds threshold, navigate images
+  //? If horizontal swipe is more significant than vertical and exceeds threshold, navigate images
   if (absDeltaX > absDeltaY && absDeltaX > 50) {
     if (deltaX > 0) {
       prevImage({ stopPropagation: () => {} }); // left swipe
@@ -287,7 +264,7 @@ function handleTouchEnd() {
   isSwiping = false;
 }
 
-// Add touch event listeners to the lightbox content
+// ?Add touch event listeners to the lightbox content
 const lightboxContent = document.querySelector(".lightbox-content");
 if (lightboxContent) {
   lightboxContent.addEventListener("touchstart", handleTouchStart, {
